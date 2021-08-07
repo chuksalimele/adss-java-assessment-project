@@ -1,0 +1,12 @@
+# DEFAULT CACHE REGION
+
+jcs.default=
+jcs.default.cacheattributes=org.apache.commons.jcs3.engine.CompositeCacheAttributes
+jcs.default.cacheattributes.MaxObjects=1000
+jcs.default.cacheattributes.MemoryCacheName=org.apache.commons.jcs3.engine.memory.lru.LRUMemoryCache
+
+# AVAILABLE AUXILIARY CACHES
+jcs.auxiliary.DC=org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCacheFactory
+jcs.auxiliary.DC.attributes=org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCacheAttributes
+jcs.auxiliary.DC.attributes.DiskPath=c:/dev/jcs/raf
+jcs.auxiliary.DC.attributes.maxKeySize=100000
