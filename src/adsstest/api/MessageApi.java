@@ -4,7 +4,6 @@ package adsstest.api;
 import adsstest.feed.IMessageService;
 import adsstest.feed.Message;
 import adsstest.feed.MsgType;
-import adsstest.feed.service.MessageService;
 import adsstest.func.Callback;
 import adsstest.input.FeedInput;
 import adsstest.listeners.MessageListener;

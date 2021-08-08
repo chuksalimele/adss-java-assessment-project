@@ -1,11 +1,12 @@
-
 package test;
 
 import adsstest.api.App;
 import adsstest.api.MessageApi;
+import adsstest.exceptions.MessageException;
 import adsstest.factory.InputFactory;
 import adsstest.feed.IMessageService;
 import adsstest.input.FeedInput;
+import adsstest.util.LoggerHelper;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import java.io.IOException;
@@ -13,10 +14,14 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
 
 /**
  *
@@ -27,7 +32,16 @@ public class SimulateFeedSource {
     static String[] CHARS = {"A", "B", "C", "D", "E"};
     static String[] chars = {"a", "b", "c", "c", "e"};
     private static String aVals;
+    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(SimulateFeedSource.class.getName());
 
+    static{
+        try {
+            LoggerHelper.loggerConfig();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(SimulateFeedSource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     static String rpt(int n) {
         String str = "";
         for (int i = 0; i < n; i++) {
@@ -143,24 +157,24 @@ public class SimulateFeedSource {
                                 try {
                                     while (true) {
                                         in = sock.getOutputStream();
-                                
+
                                         //valid type A message
                                         byte[] data = generatedCSVRecord().getBytes();
 
                                         //invalid type A message 
                                         //byte[] data = generatedCSVRecordWithInvalidMessageOfTypeA().getBytes();
-
+                                        
                                         in.write(data);
                                         in.flush();
 
                                     }
                                 } catch (IOException ex) {
-                                    Logger.getLogger(SimulateFeedSource.class.getName()).log(Level.SEVERE, null, ex);
+                                    LOGGER.debug(ex.getMessage(), ex);
                                 } finally {
                                     try {
                                         in.close();
                                     } catch (IOException ex) {
-                                        Logger.getLogger(SimulateFeedSource.class.getName()).log(Level.SEVERE, null, ex);
+                                        LOGGER.debug(ex.getMessage(), ex);
                                     }
                                 }
                             });
@@ -172,7 +186,7 @@ public class SimulateFeedSource {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(SimulateFeedSource.class.getName()).log(Level.SEVERE, null, ex);
+                LOGGER.debug(ex.getMessage(), ex);
             }
 
         });
@@ -180,7 +194,7 @@ public class SimulateFeedSource {
     }
 
     static void SimuateFeedSocketCommunication() throws Exception {
-        
+
         SimulateFeedSocketServer();
 
         int CLIENT_COUNT = 3; //number of client connnections to the server
