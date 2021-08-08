@@ -5,7 +5,8 @@ import adsstest.input.FeedInput;
 import adsstest.listeners.MessageListener;
 
 /**
- *
+ * Service that will declare the contract for service implementation
+ * 
  * @author Chukwudi Alimele
  */
 public interface IMessageService extends Feed{
