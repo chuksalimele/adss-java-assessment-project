@@ -8,7 +8,7 @@ package adsstest.feed;
 public interface Feed {
     
     /**
-     * This is used to read the field 
+     * This is used to read the feed messages 
      * 
      * @return 
      */
