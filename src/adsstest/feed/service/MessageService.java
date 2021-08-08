@@ -76,7 +76,7 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public void removedMessageListener(MessageListener listener) {
+    public void removeMessageListener(MessageListener listener) {
         msgListeners.remove(listener);
     }
 

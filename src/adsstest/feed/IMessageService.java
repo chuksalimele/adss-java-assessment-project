@@ -3,8 +3,6 @@ package adsstest.feed;
 
 import adsstest.input.FeedInput;
 import adsstest.listeners.MessageListener;
-import java.io.InputStream;
-import java.util.List;
 
 /**
  *
@@ -45,7 +43,7 @@ public interface IMessageService extends Feed{
      * 
      * @param listener 
      */
-    void removedMessageListener(MessageListener listener);
+    void removeMessageListener(MessageListener listener);
     
     /**
      * Clear all message listeners
