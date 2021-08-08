@@ -52,7 +52,7 @@ public class MessageApi {
         return this;
     }
 
-    void close() {
+    void close() {        
         msgService.stop();
         this.executor.cancel(false);//wait for background tasks to complete before shutting down
     }

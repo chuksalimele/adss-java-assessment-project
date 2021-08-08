@@ -47,6 +47,7 @@ public class MessageService implements IMessageService {
      */
     @Override
     public void stop() {
+        msgListeners.clear();
         feedInput.close();
         msgStore.shutdown();
     }
