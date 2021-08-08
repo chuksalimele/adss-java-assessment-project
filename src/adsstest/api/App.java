@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package adsstest.api;
 
 import adsstest.factory.FeedInputFactory;
@@ -12,13 +8,8 @@ import adsstest.feed.IStorage;
 import adsstest.feed.service.MessageService;
 import adsstest.feed.store.CacheStore;
 import com.google.inject.AbstractModule;
-import java.io.File;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.logging.log4j.LogManager;
